@@ -1,0 +1,68 @@
+effortrack - web-based simple effort tracking
+
+
+This project is a set of webpages, scripts, and database schemas for managing
+the reporting of effort by employees in a small company.  Effort is tracked in
+terms of percent effort per a week per a project.  Total effort should add up
+to 100 (you can think of these as generic effort units if you want).
+
+Functionality
+---------
+
+Employee.  
+Can log in with a userid/password.  
+Can logout.  
+Can stay logged in indefinitely.
+Userid is specified by administrator.  
+Employee can change password.  
+Passwords are hashed with phpass.
+After logging on, can assign weekly effort.  
+Can modify effort for only past X weeks.  
+Last week and this week are clearly marked.
+Chooses from projects setup by administrator (presumably there will always be an other/vacation/etc project)
+No options for custom projects or comments.
+Provides integers between 0 and 100 for weekly effort.  
+Must add up to 100. Cannot submit unless they do (auto fill unassigned category?)
+Can autofill from previous week if available.
+
+
+Administrator.
+Can log in with a userid/password.  
+Login credentials expire (but can save password).
+Can change password.
+Can add/edit/remove users. - Last,First,userid, cost center
+Can add/edit/remove projects - project name
+Users and projects can all be initialized with a properly formatted csv file
+
+The administrator can view various reports, including downloading a csv dump of the data.
+Idea for reports:
+pie charts! -  effort per project for a given time period
+line graphs! - effort per over time
+
+Behavior:
+Weeks start on Sunday.
+
+Backend is mysql database.  Default setup is to be on the same host as the webserver.
+
+The recording effort is intended to be historical.  This means once it is saved,
+other changes to the database (ie, adding/removing people/projects) will not change
+the saved data.  The user/project setup only affects what options are available for 
+entering new data.
+
+Scalability:
+This system is not designed for large companies with many years of records.
+All the effort data is stored in one table.  I don't anticipate performance problems
+even with hundreds of employees and several years of data, but there is always the
+option of manually archiving data to reduce the table size.
+
+Most of the data is stored as string for maximum flexibility (as opposed to performance).
+
+Reliability:
+Read the license.  Backup your data.  
+
+Security:
+Read the license.  I make some effort at reasonable security (phpass is used to
+hash passwords - they are never stored in clear text), but the underlying 
+assumption is that you are on a trusted network.  For example, password hashing
+is done server side, so passwords are sent over the wire in clear text.  You
+can implement SSL if this is a problem.
