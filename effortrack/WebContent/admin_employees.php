@@ -225,7 +225,8 @@ First Name, Last Name, Cost Center, UserID, Password
  </fieldset>
 </form>
 
-<form action="admin_getemployees.php" method="POST" >
+<form action="admin_download.php" method="POST" >
+<input type="hidden" name="operation" value="employees"> 
 <fieldset>
   <legend>Download:</legend>
 <input type="submit" value="Download CSV...">
