@@ -4,6 +4,7 @@
 ?>
 <html>
 <head>
+<meta name="viewport" content="width=300">
 <title>EfforTrack Login</title>
  <link rel="stylesheet" type="text/css" href="default.css">
 </head>

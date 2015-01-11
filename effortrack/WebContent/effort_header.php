@@ -3,6 +3,7 @@
 ?>
 <html>
 <head>
+<meta name="viewport" content="width=400">
 <title>EfforTrack</title>
  <link rel="stylesheet" type="text/css" href="default.css">
  <script type="text/javascript" src="jquery-1.11.1.js"></script>
