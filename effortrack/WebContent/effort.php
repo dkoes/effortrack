@@ -76,6 +76,11 @@ echo("</script>\n")
 
 $( document ).ready(function() {
 
+	$( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
+		//report an error
+		alert("There was an issue submitting your data.  Please tell someone.");
+	});
+	
 	var addWeek = function(date, effort, preveffort) {
 		//the function does all the work, it creates a div for a week's worth
 		//of effort that has the ability to add/remove projects, import data
@@ -130,6 +135,9 @@ $( document ).ready(function() {
 				}
 			}
 
+			//any change removes saved message
+			$(container).find('.savedmsg').text("");
+			
 			//set message
 			$(message).empty();
 			if(total != 100) { //doesn't add to 100%
@@ -154,9 +162,29 @@ $( document ).ready(function() {
 				$(submitbutton).prop("disabled",true);
 				$(message).text("Missing project name.");
 			} else {
-				$(submitbutton).prop("disabled",false);				
+				$(submitbutton).prop("disabled",false);		
+				return true; //okay to submit		
 			}
+			return false;
 		};
+
+		//pose values to server
+		var submitValues = function() {
+			var okay = updateStatus();
+			if(okay) {
+				var data = extractData();
+				$.post( "effortdata.php", { 'values': JSON.stringify(data), 'date': date } , 
+						function(result) { //check the return value
+						if(result != "SUCCESS") {
+							alert("Server returned error: "+result);
+						}
+						else {
+							$(container).find('.changedvalue').removeClass('changedvalue');
+							$(container).find('.savedmsg').text("Saved");
+						}
+				});
+			}
+		}
 		
 		var addProjectChooser  = function(projectname, effortamount, setchanged) { 
 			//add a remove button, project dropdown and a text entry box
@@ -205,6 +233,14 @@ $( document ).ready(function() {
 				text.addClass("changedvalue");
 				updateStatus(); 
 			});
+			text.on('keyup', function(e) {
+				//catch an enter key press and submit if entries are valid
+				e.which = e.which || e.keyCode;
+    			if(e.which == 13) {
+		        	// submit
+    		        submitValues();    		        
+    			}
+			});
 
 			updateStatus();
 			
@@ -236,24 +272,9 @@ $( document ).ready(function() {
 
 		var submitbutton = $("<input type='button' value='Submit'>");
 		submitbutton.addClass('effortsubmit').appendTo(container);
-		submitbutton.click(function() {
-
-			$( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
-				//report an error
-				alert("There was an issue submitting your data.  Please tell someone.");
-			});
-
-			var data = extractData();
-			$.post( "effortdata.php", { 'values': JSON.stringify(data), 'date': date } , 
-					function(result) { //check the return value
-					if(result != "SUCCESS") {
-						alert("Server returned error: "+result);
-					}
-					else {
-						$(container).find('.changedvalue').removeClass('changedvalue');
-					}
-			});
-		});
+		submitbutton.click(submitValues);
+		var savedmsg = $("<span></span>");
+		savedmsg.addClass('savedmsg').appendTo(container);
 		//populate with existing values
 
 		for(var i = 0; i < effort.length; i++) {

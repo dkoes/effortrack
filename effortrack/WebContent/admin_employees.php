@@ -170,7 +170,9 @@ switch($op) {
 ?>
 
 <form action="admin.php" method="POST">
-<input type="hidden" name="view" value="employees"> 
+<input type="hidden" name="view" value="employees">
+ 
+<div class="admincontentblock">
 <fieldset>
   <legend>Add/Change Employee:</legend>
   
@@ -186,11 +188,13 @@ switch($op) {
   <input type="submit" value="Add/Modify">
   <br>
   </fieldset>
+  </div>
 </form>
 
 <form action="admin.php" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="view" value="employees"> 
 <input type="hidden" name="operation" value="fileadd"> 
+<div class="admincontentblock">
 <fieldset>
   <legend>Add From File:</legend>
 <input type="file" name="userfile"><br>
@@ -200,11 +204,13 @@ First Name, Last Name, Cost Center, UserID, Password
 <br>
 <input type="submit" value="Add">
  </fieldset>
+ </div>
 </form>
 
 <form action="admin.php" method="POST" >
 <input type="hidden" name="view" value="employees"> 
 <input type="hidden" name="operation" value="remove"> 
+<div class="admincontentblock">
 <fieldset>
   <legend>Remove Employee:</legend>
   <select name="useridremove">
@@ -223,13 +229,16 @@ First Name, Last Name, Cost Center, UserID, Password
   </select>
 <input type="submit" value="Remove">
  </fieldset>
+ </div>
 </form>
 
 <form action="admin_download.php" method="POST" >
 <input type="hidden" name="operation" value="employees"> 
+<div class="admincontentblock">
 <fieldset>
   <legend>Download:</legend>
 <input type="submit" value="Download CSV...">
  </fieldset>
+ </div>
 </form>
 

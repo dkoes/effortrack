@@ -92,27 +92,32 @@ switch($op) {
 <form action="admin.php" method="POST">
 <input type="hidden" name="view" value="projects"> 
 <input type="hidden" name="operation" value="add"> 
+  <div class="admincontentblock">
 <fieldset>
   <legend>Add Project:</legend>
   Name: <input type="text" name="projectname"><br>
 <input type="submit" value="Add">
  </fieldset>
+ </div>
 </form>
 
 <form action="admin.php" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="view" value="projects"> 
 <input type="hidden" name="operation" value="fileadd"> 
+<div class="admincontentblock">
 <fieldset>
   <legend>Add Projects From File:</legend>
 <input type="file" name="projectfile"><br>
 File should be a text file with a single project name on each line.<br>
 <input type="submit" value="Add">
  </fieldset>
-</form>
+</div>
+ </form>
 
 <form action="admin.php" method="POST" >
 <input type="hidden" name="view" value="projects"> 
 <input type="hidden" name="operation" value="remove"> 
+  <div class="admincontentblock">
 <fieldset>
   <legend>Remove Project:</legend>
   <select name="projectname">
@@ -122,5 +127,6 @@ File should be a text file with a single project name on each line.<br>
   </select>
 <input type="submit" value="Remove">
  </fieldset>
+ </div>
 </form>
 

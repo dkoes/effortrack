@@ -41,14 +41,18 @@ function week_dropdown_options($weeks, $selected) {
 	}
 }
 ?>
-<div class='collatedresults'>
+<div class="admincontentblock">
+<fieldset class='collatedresults'>
+  <legend>Collated Table:</legend>
 <form action="admin.php" method="POST">
 <input type="hidden" name="view" value="reports"> 
+<label>Start Date:</label>
 <select name="startdate">
 <?php 
 week_dropdown_options($allweeks, $startdate);
 ?>
 </select>
+&nbsp;<label>End Date:</label>
 <select name="enddate">
 <?php 
 week_dropdown_options($allweeks, $enddate);
@@ -59,15 +63,20 @@ week_dropdown_options($allweeks, $enddate);
 
 <table class="collatedtable">
 <thead>
-<th class="projecthead"></th>
 <?php 
+//make a header key
+echo('<tr><th class="projecthead"></th>');
+$numcenters = count($centers);
+echo("<th colspan=\"$numcenters\">Cost Centers (Percent Effort Units)</th><th></th></tr>");		
+
 //make a table with a row for each project and a column for each cost center
 //first print out cost centers
+echo('<tr><th class="projecthead">Project</th>');
 foreach($centers as $c) {
 	echo("<th>$c</th>\n");
 }
 ?>
-<th class="totalhead">Total</th></thead>
+<th class="totalhead">Total</th></tr></thead>
 <?php 
 foreach($projectdata as $p) {
 	$project = $p[0];
@@ -90,38 +99,45 @@ foreach($projectdata as $p) {
 }
 ?>
 </table>
+</fieldset>
 </div>
 
-<div class='downloadcollated'>
+<div class="admincontentblock">
+<fieldset class='downloadcollated'>
+  <legend>Download Collated:</legend>
 <form action="admin_download.php" method="POST">
 <input type="hidden" name="operation" value="collated"> 
-<select name="startdate">
+<label>Start Date:</label><select name="startdate">
 <?php 
 week_dropdown_options($allweeks, $startdate);
 ?>
 </select>
-<select name="enddate">
+&nbsp;<label>End Date:</label><select name="enddate">
 <?php 
 week_dropdown_options($allweeks, $enddate);
 ?>
 </select>
-<input type="submit" value="Download Results by Cost Center...">
+<input type="submit" value="Download by Cost Center...">
 </form>
+</fieldset>
 </div>
 
-<div class='downloadall'>
+<div class="admincontentblock">
+<fieldset class='downloadall'>
+  <legend>Full Download:</legend>
 <form action="admin_download.php" method="POST">
 <input type="hidden" name="operation" value="all"> 
-<select name="startdate">
+<label>Start Date:</label><select name="startdate">
 <?php 
 week_dropdown_options($allweeks, $startdate);
 ?>
 </select>
-<select name="enddate">
+&nbsp;<label>End Date:</label><select name="enddate">
 <?php 
 week_dropdown_options($allweeks, $enddate);
 ?>
 </select>
-<input type="submit" value="Download All Results...">
+<input type="submit" value="Download All Data...">
 </form>
+</fieldset>
 </div>

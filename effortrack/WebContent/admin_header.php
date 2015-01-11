@@ -7,11 +7,9 @@
  <link rel="stylesheet" type="text/css" href="default.css">
 </head>
 <body>
-<div class="topbanner">EffortTrack
-<div class="logout"><a href="logout.php">Logout</a></div>
-</div>
+<div class="effortbanner">effortrack</div>
 
-<div class="topbuttons">
+<div class="options">
 <?php 
 //style the active button differently
 $style = $op == "reports" ? "activebutton" : "";
@@ -24,4 +22,6 @@ $style = ($op == "password" || $op == "changepass") ? "activebutton" : "";
 echo("<div class=\"topbutton $style\"><a href=\"admin.php?view=password\">Password</a></div>");
 
 ?>
+<div class="logout"><a href="logout.php">Logout</a></div>
+
 </div> 

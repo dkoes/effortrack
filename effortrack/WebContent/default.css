@@ -1,10 +1,207 @@
 
-.effortbox {
-	border: 1px solid black;
-	padding: 1em;
-	
+body {
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	margin: 0;
 }
+
 
 .changedvalue {
 	border-color: blue;
+	border-width: 2px;
+}
+
+.loginpage {
+	height: 100%;
+	margin: 0;
+}
+
+.effortbanner {
+		background-color: black;
+		height: 1em;;
+		color: white;
+		font-size: 2em;;
+		padding: 10px;
+		padding-top: 0;
+		font-weight: bold;
+}
+.loginbox {
+	width: 10em;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 4em;
+
+    margin: auto;
+    background-color: white;
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+.loginbox input {
+	width: 100%;
+}
+
+
+
+.options {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.options div {
+	display: inline-block;
+	padding: .5em;
+	color: white;
+}
+
+.options div a:visited {
+	color: white;
+}
+
+.effortmsg {
+	height: 1.5em;
+	color: red;
+}
+
+.effortamount {
+	width: 4em;
+}
+
+.effortbox {
+	border: 1px solid black;
+	display: table;
+	padding: 1em;
+	margin: 1em;
+	    border-radius: 15px;
+	
+}
+
+.admincontent {
+	padding: 1em;
+}
+
+.admincontentblock {
+	display: table;
+}
+
+
+
+.collatedresults {
+	text-align:center;
+}
+
+
+
+/* table style is from
+http://johnsardine.com/freebies/dl-html-css/simple-little-tab/ */
+.collatedtable {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+	font-size:12px;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	 margin: 0 auto;
+	border:#ccc 1px solid;
+
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+.collatedtable th {
+	padding:11px 15px 12px 15px;
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+.collatedtable th:first-child {
+	text-align: left;
+	padding-left:10px;
+}
+.collatedtable tr:first-child th:first-child {
+	-moz-border-radius-topleft:3px;
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+.collatedtable tr:first-child th:last-child {
+	-moz-border-radius-topright:3px;
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+.collatedtable tr {
+	text-align: center;
+	padding-left:20px;
+}
+.collatedtable td:first-child {
+	text-align: left;
+	padding-left:10px;
+	border-left: 0;
+}
+.collatedtable td {
+	padding:8px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+.collatedtable tr.even td {
+	background: #f6f6f6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+.collatedtable tr:last-child td {
+	border-bottom:0;
+}
+.collatedtable tr:last-child td:first-child {
+	-moz-border-radius-bottomleft:3px;
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.collatedtable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:3px;
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.collatedtable tr:hover td {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+}
+
+.totalhead {
+	font-variant: small-caps;
+}
+
+.totalvalue {
+	font-weight: bold;
+}
+
+.collatedtable tr .projectname {
+	background: #eaebec;
+	color: black;
+	text-shadow: none;
+	font-weight: bold;
+}
+
+.changedvalue {
+	background: #eeeeff;
+}
+
+.savedmsg {
+	padding-left: 5px;
+	font-size: small;
+	font-weight: bold;
 }

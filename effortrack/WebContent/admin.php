@@ -18,6 +18,7 @@ if(isset($_REQUEST["view"])) {
 
 require 'admin_header.php';
 
+echo("<div class='admincontent'>");
 //after header, custom content for each operation
 switch ($op) {
 	case "reports":		
@@ -91,5 +92,5 @@ switch ($op) {
 }
 
 ?>
-
+</div>
 </body></html>
