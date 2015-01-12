@@ -43,7 +43,7 @@ function week_dropdown_options($weeks, $selected) {
 ?>
 <div class="admincontentblock">
 <fieldset class='collatedresults'>
-  <legend>Collated Table:</legend>
+  <legend>Summary:</legend>
 <form action="admin.php" method="POST">
 <input type="hidden" name="view" value="reports"> 
 <label>Start Date:</label>
@@ -99,6 +99,12 @@ foreach($projectdata as $p) {
 }
 ?>
 </table>
+
+<div class="pieChart">
+
+<canvas id="pieChart" width="250" height="250"></canvas>
+<div id="pieLegend"></div>
+</div>
 </fieldset>
 </div>
 
@@ -141,3 +147,60 @@ week_dropdown_options($allweeks, $enddate);
 </form>
 </fieldset>
 </div>
+
+<script src="Chart.js/Chart.min.js"></script>
+<script>
+
+
+$( document ).ready(function() {
+
+	//convert a number to a two digit hexadecimal string
+	//it is amazing that javascript doesn't have native support for this..
+	var tohexString = function(val) {
+		return ("00"+Math.floor(val).toString(16)).substr(-2);
+	}
+	//return a color for val which in the range [0,max)
+	var colorFromNth = function(val, max) {
+		var lo = 0.0, hi = max;
+		if(typeof(val) == "undefined")
+			return "#ffffff";
+		if(val < lo) val = lo;
+		if(val > hi) val = hi;
+		var scale = (val-lo)/(hi-lo);
+		  
+		var h = -(scale+0.5);
+	
+		console.log("h "+h);
+		var r = Math.sin(Math.PI*h);
+		r = r*r*255;
+		var g = Math.sin(Math.PI*(h+1/3.0));
+		g = g*g*255;
+		var b = Math.sin(Math.PI*(h+2/3.0));
+		b = b*b*255;
+
+		var hex = "#";
+		hex += tohexString(r);
+		hex += tohexString(g);
+		hex += tohexString(b);
+		
+		console.log("h "+h+" r "+r+" g "+g+" b "+b+" hex "+hex);
+		return hex;
+	};
+	
+<?php 
+printf("var projecttotals = %s;\n",json_encode($projectdata));
+?>	
+	var ctx = $("#pieChart").get(0).getContext("2d");
+	var piedata = [];
+	for(var i = 0, n = projecttotals.length; i < n; i++)
+	{
+		var name = projecttotals[i][0];
+		var val = parseInt(projecttotals[i][1]);
+		piedata.push({value: val, label: name, color: colorFromNth(i,n) });
+	}
+	var pie = new Chart(ctx).Pie(piedata,{
+		legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li style=\"color:<%=segments[i].fillColor%>\"><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+		});
+	$('#pieLegend').html(pie.generateLegend());
+});
+</script>

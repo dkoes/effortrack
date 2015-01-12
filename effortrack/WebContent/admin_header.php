@@ -5,6 +5,8 @@
 <head>
 <title>EfforTrack Administration</title>
  <link rel="stylesheet" type="text/css" href="default.css">
+  <script type="text/javascript" src="jquery-1.11.1.js"></script>
+
 </head>
 <body>
 <div class="effortbanner">effortrack</div>

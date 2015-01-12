@@ -219,3 +219,11 @@ http://johnsardine.com/freebies/dl-html-css/simple-little-tab/ */
 .effortbox select {
 	font-size: 1.2em;
 }
+
+.pieChart {
+	padding-top: 1em;
+}
+.pie-legend {
+	display: inline-block;
+	text-align: left;
+}
