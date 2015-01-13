@@ -27,7 +27,7 @@ Can autofill from previous week if available.
 
 
 Administrator.
-Can log in with a userid/password.  
+Can log in with a userid/password.   The userid is admin and the initial password is changeme
 Login credentials expire (but can save password).
 Can change password.
 Can add/edit/remove users. - Last,First,userid, cost center
@@ -35,14 +35,16 @@ Can add/edit/remove projects - project name
 Users and projects can all be initialized with a properly formatted csv file
 
 The administrator can view various reports, including downloading a csv dump of the data.
-Idea for reports:
-pie charts! -  effort per project for a given time period
-line graphs! - effort per over time
+The report consists of a table of effort broken out by cost center and project 
+and a pie chart of effort per project.  A line graph of effort per project
+over time may eventually appear.
 
 Behavior:
 Weeks start on Sunday.
 
 Backend is mysql database.  Default setup is to be on the same host as the webserver.
+effortrack.sql defines the database structure for the effortrak database.
+I recommend installing phpmyadmin and creating the database by importing effortrack.sql
 
 The recording effort is intended to be historical.  This means once it is saved,
 other changes to the database (ie, adding/removing people/projects) will not change
